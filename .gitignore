@@ -1,0 +1,11 @@
+# Smartyキャッシュディレクトリ
+src/templates_c/*
+!src/templates_c/.gitkeep
+src/cache/*
+!src/cache/.gitkeep
+
+# IDEスタブ
+.stubs/
+
+# Docker
+.env
