@@ -9,13 +9,14 @@ RUN dnf install -y php56-php php56-php-fpm php56-php-mysqlnd \
     php56-php-mbstring php56-php-xml php56-php-gd httpd
 
 # Smartyのインストール
-RUN dnf install -y wget unzip \
+RUN dnf install -y unzip \
     && mkdir -p /usr/share/php \
     && cd /tmp \
-    && wget https://github.com/smarty-php/smarty/archive/refs/tags/v3.1.39.zip \
-    && unzip v3.1.39.zip \
+    && curl -L -o smarty.zip https://github.com/smarty-php/smarty/archive/refs/tags/v3.1.39.zip \
+    && unzip smarty.zip \
     && mv smarty-3.1.39/libs /usr/share/php/Smarty \
-    && rm -rf v3.1.39.zip smarty-3.1.39
+    && rm -rf smarty.zip smarty-3.1.39 \
+    && dnf clean all
 
 # PHP 5.6をデフォルトに設定
 RUN ln -s /opt/remi/php56/root/usr/bin/php /usr/bin/php
