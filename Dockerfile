@@ -27,11 +27,9 @@ RUN echo "<FilesMatch \\.php$>" > /etc/httpd/conf.d/php-fpm.conf \
     && echo "</FilesMatch>" >> /etc/httpd/conf.d/php-fpm.conf \
     && echo "DirectoryIndex index.php index.html" >> /etc/httpd/conf.d/php-fpm.conf
 
-# エントリーポイントスクリプトの作成
-RUN echo '#!/bin/bash' > /entrypoint.sh \
-    && echo '/opt/remi/php56/root/usr/sbin/php-fpm -D' >> /entrypoint.sh \
-    && echo 'exec /usr/sbin/httpd -D FOREGROUND' >> /entrypoint.sh \
-    && chmod +x /entrypoint.sh
+# エントリーポイントスクリプトをコピー
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # 作業ディレクトリ
 WORKDIR /var/www/html
