@@ -8,14 +8,14 @@ RUN dnf install -y php56-php php56-php-fpm php56-php-mysqlnd \
     php56-php-mbstring php56-php-xml php56-php-gd httpd \
     && ln -s /opt/remi/php56/root/usr/bin/php /usr/bin/php
 
-# Smartyのインストール
+# Smartyのインストール (2.6.26)
 RUN dnf install -y unzip \
     && mkdir -p /usr/share/php \
     && cd /tmp \
-    && curl -L -o smarty.zip https://github.com/smarty-php/smarty/archive/refs/tags/v3.1.39.zip \
-    && unzip smarty.zip \
-    && mv smarty-3.1.39/libs /usr/share/php/Smarty \
-    && rm -rf /tmp/smarty* \
+    && curl -L -o smarty.tar.gz https://www.smarty.net/files/Smarty-2.6.26.tar.gz \
+    && tar xzf smarty.tar.gz \
+    && mv Smarty-2.6.26/libs /usr/share/php/Smarty \
+    && rm -rf /tmp/Smarty* \
     && dnf clean all
 
 # エントリーポイントスクリプトをコピー

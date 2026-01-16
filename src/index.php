@@ -1,6 +1,6 @@
 <?php
-// デバッグ用
-error_reporting(E_ALL);
+// エラー表示設定（Deprecatedを非表示）
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 ini_set('display_errors', 1);
 
 // タイムゾーン設定
