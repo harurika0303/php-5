@@ -20,7 +20,7 @@
         </div>
         {/if}
         
-        {if $news_list|@count > 0}
+        {if $news_list|count > 0}
         <div class="news-list">
             {foreach from=$news_list item=news}
             {include file="news_item.tpl" news=$news}
