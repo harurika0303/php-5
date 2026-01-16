@@ -111,11 +111,27 @@ body {
     color: #999;
 }
 
+.no-news p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.no-news small {
+    color: #bbb;
+}
+
 .news-tags {
     display: flex;
     gap: 8px;
     margin-top: 12px;
     flex-wrap: wrap;
+    align-items: center;
+}
+
+.tags-label {
+    font-weight: bold;
+    color: #666;
+    font-size: 12px;
 }
 
 .tag {
@@ -124,4 +140,142 @@ body {
     padding: 3px 10px;
     border-radius: 12px;
     font-size: 11px;
+}
+
+.tag.first-tag {
+    background-color: #e0e7ff;
+    color: #4338ca;
+    font-weight: bold;
+}
+
+.tag-count {
+    color: #999;
+    font-size: 11px;
+    margin-left: 8px;
+}
+
+.news-info {
+    margin-top: 8px;
+    color: #888;
+}
+
+.news-footer {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popularity {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.popularity.high {
+    background-color: #fee;
+    color: #c00;
+}
+
+.popularity.medium {
+    background-color: #fef7e0;
+    color: #f59e0b;
+}
+
+.popularity.low {
+    background-color: #f5f5f5;
+    color: #999;
+}
+
+.news-id {
+    font-size: 11px;
+    color: #aaa;
+    font-family: monospace;
+}
+
+.news-item.important {
+    border-left: 4px solid #dc2626;
+}
+
+.category-press {
+    background-color: #3b82f6;
+}
+
+.category-important {
+    background-color: #dc2626;
+}
+
+.category-campaign {
+    background-color: #10b981;
+}
+
+.news-stats {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #666;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.ad-space {
+    background-color: #fef3c7;
+    border: 2px dashed #fbbf24;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.notice-banner {
+    background-color: #dbeafe;
+    border-left: 4px solid #3b82f6;
+    padding: 12px 20px;
+    margin: 15px 0;
+    border-radius: 4px;
+}
+
+.pagination-info {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.footer {
+    margin-top: 50px;
+    padding: 30px 0;
+    background-color: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+}
+
+.footer p {
+    text-align: center;
+    margin: 5px 0;
 }

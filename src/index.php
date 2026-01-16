@@ -33,18 +33,31 @@ try {
     $news_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // 日付をPHP側でフォーマット（SmartyのDeprecatedなdate_format修飾子を避けるため）
+    $total_views = 0;
     foreach ($news_list as &$news) {
         $news['formatted_date'] = date('Y年m月d日', strtotime($news['published_date']));
         // タグを配列に分割
         $news['tags'] = !empty($news['tags']) ? explode(',', $news['tags']) : array();
+        // 閲覧数を合計
+        $total_views += $news['view_count'];
     }
     unset($news);
 
+    // 統計情報を計算
+    $news_count = count($news_list);
+    $avg_views = $news_count > 0 ? round($total_views / $news_count) : 0;
+
     $smarty->assign('news_list', $news_list);
     $smarty->assign('page_title', 'ニュース一覧');
+    $smarty->assign('news_count', $news_count);
+    $smarty->assign('total_views', $total_views);
+    $smarty->assign('avg_views', $avg_views);
 } catch (PDOException $e) {
     $smarty->assign('error', 'データベース接続エラー: ' . $e->getMessage());
     $smarty->assign('news_list', array());
+    $smarty->assign('news_count', 0);
+    $smarty->assign('total_views', 0);
+    $smarty->assign('avg_views', 0);
 }
 
 $smarty->display('news_list.tpl');
