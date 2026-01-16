@@ -23,14 +23,7 @@
         {if $news_list|@count > 0}
         <div class="news-list">
             {foreach from=$news_list item=news}
-            <div class="news-item">
-                <div class="news-meta">
-                    <span class="news-date">{$news.formatted_date}</span>
-                    <span class="news-category">{$news.category}</span>
-                </div>
-                <h2 class="news-title">{$news.title}</h2>
-                <p class="news-content">{$news.content}</p>
-            </div>
+            {include file="news_item.tpl" news=$news}
             {/foreach}
         </div>
         {else}

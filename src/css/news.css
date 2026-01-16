@@ -56,6 +56,7 @@ body {
     align-items: center;
     gap: 15px;
     margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 
 .news-date {
@@ -70,6 +71,16 @@ body {
     border-radius: 4px;
     font-size: 12px;
     font-weight: bold;
+}
+
+.news-author {
+    color: #888;
+    font-size: 13px;
+}
+
+.news-views {
+    color: #888;
+    font-size: 13px;
 }
 
 .news-title {
@@ -98,4 +109,19 @@ body {
     text-align: center;
     padding: 40px;
     color: #999;
+}
+
+.news-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: #f0f0f0;
+    color: #666;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
 }

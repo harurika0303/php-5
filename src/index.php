@@ -26,7 +26,7 @@ try {
 
     // ニュース取得
     $stmt = $pdo->query('
-        SELECT id, title, content, category, published_date 
+        SELECT id, title, content, category, author, tags, view_count, published_date 
         FROM news 
         ORDER BY published_date DESC
     ');
@@ -35,6 +35,8 @@ try {
     // 日付をPHP側でフォーマット（SmartyのDeprecatedなdate_format修飾子を避けるため）
     foreach ($news_list as &$news) {
         $news['formatted_date'] = date('Y年m月d日', strtotime($news['published_date']));
+        // タグを配列に分割
+        $news['tags'] = !empty($news['tags']) ? explode(',', $news['tags']) : array();
     }
     unset($news);
 
