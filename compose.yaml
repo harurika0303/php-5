@@ -4,35 +4,36 @@ services:
   php-app:
     build: .
     container_name: php-app
-    ports:
-      - "80:80"
     volumes:
       - ./src:/var/www/html
+    ports:
+      - "80:80"
     depends_on:
       - db1
       - db2
 
   db1:
-    image: mariadb:latest
+    image: mariadb:10.5
     container_name: db1
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: testdb1
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: testdb
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db1_data:/var/lib/mysql
     ports:
       - "3306:3306"
-    volumes:
-      - db1_data:/var/lib/mysql
 
   db2:
-    image: mariadb:latest
+    image: mariadb:10.5
     container_name: db2
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: testdb2
-    ports:
-      - "3307:3306"
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: testdb
     volumes:
       - db2_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
 
 volumes:
   db1_data:

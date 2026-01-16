@@ -1,37 +1,42 @@
 <?php
+// デバッグ用
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-/**
- * PHP + MariaDB 接続テスト
- * 
- * このスクリプトは2つのMariaDBコンテナ(db1, db2)への接続を確認し、
- * それぞれのバージョン情報を表示します。
- */
+// タイムゾーン設定
+date_default_timezone_set('Asia/Tokyo');
 
-echo "<h1>PHP + MariaDB 接続テスト</h1>";
+require_once '/usr/share/php/Smarty/Smarty.class.php';
 
-// 接続先データベースの定義
-// キー: ホスト名（Dockerコンテナ名）、値: データベース名
-$databases = ['db1' => 'testdb1', 'db2' => 'testdb2'];
+// Smarty初期化
+$smarty = new Smarty();
+$smarty->template_dir = '/var/www/html/templates';
+$smarty->compile_dir = '/var/www/html/templates_c';
+$smarty->config_dir = '/var/www/html/configs';
+$smarty->cache_dir = '/var/www/html/cache';
 
-// 各データベースに接続してバージョンを確認
-foreach ($databases as $host => $dbname) {
-    echo "<h2>{$host}</h2>";
-    
-    // データベースに接続（user: root, password: root）
-    $conn = mysqli_connect($host, 'root', 'root', $dbname);
-    
-    if ($conn) {
-        // 接続成功: MariaDBバージョンを取得して表示
-        $result = mysqli_query($conn, "SELECT VERSION()");
-        $version = mysqli_fetch_row($result)[0];
-        echo "<p style='color: green;'>✓ {$version}</p>";
-        mysqli_close($conn);
-    } else {
-        // 接続失敗: エラーメッセージを表示
-        echo "<p style='color: red;'>✗ 接続失敗</p>";
-    }
+// データベース接続
+try {
+    $pdo = new PDO(
+        'mysql:host=db1;dbname=testdb;charset=utf8',
+        'root',
+        'rootpassword'
+    );
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // ニュース取得
+    $stmt = $pdo->query('
+        SELECT id, title, content, category, published_date 
+        FROM news 
+        ORDER BY published_date DESC
+    ');
+    $news_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $smarty->assign('news_list', $news_list);
+    $smarty->assign('page_title', 'ニュース一覧');
+} catch (PDOException $e) {
+    $smarty->assign('error', 'データベース接続エラー: ' . $e->getMessage());
+    $smarty->assign('news_list', array());
 }
 
-// PHP環境の詳細情報を表示
-echo "<hr><h2>PHP情報</h2>";
-phpinfo();
+$smarty->display('news_list.tpl');
