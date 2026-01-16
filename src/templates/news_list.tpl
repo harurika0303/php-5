@@ -25,7 +25,7 @@
             {foreach from=$news_list item=news}
             <div class="news-item">
                 <div class="news-meta">
-                    <span class="news-date">{$news.published_date|date_format:"%Y年%m月%d日"}</span>
+                    <span class="news-date">{$news.formatted_date}</span>
                     <span class="news-category">{$news.category}</span>
                 </div>
                 <h2 class="news-title">{$news.title}</h2>

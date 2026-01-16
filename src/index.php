@@ -32,6 +32,12 @@ try {
     ');
     $news_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // 日付をPHP側でフォーマット（SmartyのDeprecatedなdate_format修飾子を避けるため）
+    foreach ($news_list as &$news) {
+        $news['formatted_date'] = date('Y年m月d日', strtotime($news['published_date']));
+    }
+    unset($news);
+
     $smarty->assign('news_list', $news_list);
     $smarty->assign('page_title', 'ニュース一覧');
 } catch (PDOException $e) {
