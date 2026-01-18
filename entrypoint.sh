@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # PHP-FPMを起動
-/opt/remi/php56/root/usr/sbin/php-fpm -D
+php-fpm -D
 
-# Apacheを起動（フォアグラウンド）
-exec /usr/sbin/httpd -D FOREGROUND
+# Apacheを起動(フォアグラウンド)
+exec httpd -D FOREGROUND

@@ -6,7 +6,8 @@ RUN dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm epel-
 # PHP 5.6とPHP-FPMのインストール
 RUN dnf install -y php56-php php56-php-fpm php56-php-mysqlnd \
     php56-php-mbstring php56-php-xml php56-php-gd httpd \
-    && ln -s /opt/remi/php56/root/usr/bin/php /usr/bin/php
+    && ln -s /opt/remi/php56/root/usr/bin/php /usr/bin/php \
+    && ln -s /opt/remi/php56/root/usr/sbin/php-fpm /usr/sbin/php-fpm
 
 # Smartyのインストール (2.6.26)
 RUN dnf install -y unzip \
