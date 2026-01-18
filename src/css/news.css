@@ -8,6 +8,144 @@ body {
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     background-color: #f5f5f5;
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ダークモードスタイル */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .header {
+    background-color: #2d2d2d;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .header h1 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .subtitle {
+    color: #b0b0b0;
+}
+
+body.dark-mode .news-list {
+    background-color: #2d2d2d;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .news-item {
+    border-bottom-color: #404040;
+}
+
+body.dark-mode .news-item:hover {
+    background-color: #353535;
+}
+
+body.dark-mode .news-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .news-content {
+    color: #b0b0b0;
+}
+
+body.dark-mode .news-date,
+body.dark-mode .news-author,
+body.dark-mode .news-views {
+    color: #888;
+}
+
+body.dark-mode .tag {
+    background-color: #404040;
+    color: #b0b0b0;
+}
+
+body.dark-mode .tag.first-tag {
+    background-color: #3730a3;
+    color: #c7d2fe;
+}
+
+body.dark-mode .news-stats {
+    background-color: #2d2d2d;
+}
+
+body.dark-mode .stat-label {
+    color: #b0b0b0;
+}
+
+body.dark-mode .stat-value {
+    color: #e0e0e0;
+}
+
+body.dark-mode .ad-space {
+    background-color: #3d3520;
+    border-color: #fbbf24;
+    color: #fef3c7;
+}
+
+body.dark-mode .notice-banner {
+    background-color: #1e3a5f;
+    border-left-color: #3b82f6;
+    color: #dbeafe;
+}
+
+body.dark-mode .pagination-info {
+    color: #b0b0b0;
+}
+
+body.dark-mode .footer {
+    background-color: #2d2d2d;
+    border-top-color: #404040;
+    color: #b0b0b0;
+}
+
+body.dark-mode .no-news {
+    color: #888;
+}
+
+body.dark-mode .no-news small {
+    color: #666;
+}
+
+body.dark-mode .news-footer {
+    border-top-color: #404040;
+}
+
+body.dark-mode .news-id {
+    color: #666;
+}
+
+body.dark-mode .error-message {
+    background-color: #3d3520;
+    border-color: #fbbf24;
+    color: #fef3c7;
+}
+
+/* ダークモード切り替えボタン */
+.dark-mode-toggle {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .dark-mode-toggle {
+    background-color: #fbbf24;
+    color: #1a1a1a;
 }
 
 .container {
@@ -23,10 +161,16 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .header h1 {
     font-size: 28px;
     color: #333;
-    text-align: center;
+    text-align: left;
 }
 
 .news-list {
@@ -241,7 +385,7 @@ body {
     color: #666;
     font-size: 14px;
     margin-top: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 .ad-space {

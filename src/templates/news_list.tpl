@@ -10,16 +10,23 @@
     {* ヘッダー部分 *}
     <div class="header">
         <div class="container">
-            <h1>{$page_title|upper}</h1>
-            {* capture: 変数に出力をキャプチャ *}
-            {capture name=subtitle}
-                {if $news_count > 0}
-                    全{$news_count}件のニュース
-                {else}
-                    ニュースがありません
-                {/if}
-            {/capture}
-            <p class="subtitle">{$smarty.capture.subtitle}</p>
+            <div class="header-content">
+                <div>
+                    <h1>{$page_title|upper}</h1>
+                    {* capture: 変数に出力をキャプチャ *}
+                    {capture name=subtitle}
+                        {if $news_count > 0}
+                            全{$news_count}件のニュース
+                        {else}
+                            ニュースがありません
+                        {/if}
+                    {/capture}
+                    <p class="subtitle">{$smarty.capture.subtitle}</p>
+                </div>
+                <button class="dark-mode-toggle" id="darkModeToggle" aria-label="ダークモード切り替え">
+                    <span id="modeIcon">🌙</span>
+                </button>
+            </div>
         </div>
     </div>
     
@@ -99,5 +106,34 @@
             <p><small>&copy; 2025 ニュース管理システム | 最終更新: {$smarty.now|date_format:"%Y年%m月%d日"}</small></p>
         </div>
     </footer>
+    
+    {literal}
+    <script>
+        // ダークモード切り替え機能
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const modeIcon = document.getElementById('modeIcon');
+        const body = document.body;
+        
+        // ローカルストレージから設定を読み込み
+        const currentMode = localStorage.getItem('darkMode');
+        if (currentMode === 'enabled') {
+            body.classList.add('dark-mode');
+            modeIcon.textContent = '☀️';
+        }
+        
+        // ボタンクリックイベント
+        darkModeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                modeIcon.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                modeIcon.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
+    {/literal}
 </body>
 </html>
